@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/city_page_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="32.0sp"
+        android:textColor="#ffa7a7a7"
+        android:id="@+id/text_city_name"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24.0dip"
+        android:text="City Name : "
+        android:layout_marginStart="24.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText android:id="@+id/et_city_name_add_city"
+        android:background="@drawable/big_edit_text"
+        android:padding="24.0dip"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24.0dip"
+        android:layout_marginStart="24.0dip"
+        android:layout_marginEnd="24.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_city_name" />
+
+    <ImageView android:id="@+id/iv_placeholder_add_city"
+        android:layout_width="0.0dip"
+        android:layout_height="150.0dip"
+        android:layout_marginTop="24.0dip"
+        android:src="@drawable/placeholder"
+        android:layout_marginStart="24.0dip"
+        android:layout_marginEnd="24.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_city_name_add_city" />
+
+    <ImageButton android:id="@+id/ibt_select_image_add_city"
+        android:background="@drawable/bt_select_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_placeholder_add_city" />
+
+    <ImageButton android:id="@+id/ibt_confirm_add_city"
+        android:background="@drawable/bt_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/ibt_select_image_add_city"
+        app:layout_constraintTop_toBottomOf="@id/ibt_select_image_add_city" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

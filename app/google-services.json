@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "268270499683",
+    "firebase_url": "https://infocity-115f9.firebaseio.com",
+    "project_id": "infocity-115f9",
+    "storage_bucket": "infocity-115f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268270499683:android:0996535499fe1ff4",
+        "android_client_info": {
+          "package_name": "com.example.infocity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268270499683-ch0otqlgj8rr27urn40ttugf618hbgrf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.infocity",
+            "certificate_hash": "cdef1793e387d6f4aafd996db846b5abe9f3c5f7"
+          }
+        },
+        {
+          "client_id": "268270499683-s91p8sm6nvl6bsi7et2kt49j4eih9lsq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKa69kBfN8FqHmPmGbxm9kBurOWUhtcgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268270499683-s91p8sm6nvl6bsi7et2kt49j4eih9lsq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
