@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,7 +51,7 @@ public class AddEntity extends AppCompatActivity implements View.OnClickListener
     private EditText et_shop_name, et_address, et_other_information, et_phone_number;
     private boolean isVerified = true;
     private Uri imgUri, resultUri;
-    public double global_longitude,global_lattitude;
+    public double global_longitude, global_lattitude;
     private String category;
 
     @Override
@@ -117,7 +119,7 @@ public class AddEntity extends AppCompatActivity implements View.OnClickListener
                     } else {
                         Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(this, "Please add image", Toast.LENGTH_SHORT).show();
                 }
 
@@ -131,48 +133,47 @@ public class AddEntity extends AppCompatActivity implements View.OnClickListener
         //get location co-ordinates from maps API
         //save MAP co-ordinates
 
-        Map<String,Object> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
 
-        params.put("name",et_shop_name.getText().toString());
-        params.put("address",et_address.getText().toString());
-        params.put("phone",et_phone_number.getText().toString());
-        params.put("other",et_other_information.getText().toString());
-        params.put("longitude",global_longitude);
-        params.put("latitude",global_lattitude);
-        params.put("img_uri",uri);
-        SharedPreferences sharedPreferences = getSharedPreferences("selected_city",Context.MODE_PRIVATE);
-        final String city = sharedPreferences.getString("city","null");
+        params.put("name", et_shop_name.getText().toString());
+        params.put("address", et_address.getText().toString());
+        params.put("phone", et_phone_number.getText().toString());
+        params.put("other", et_other_information.getText().toString());
+        params.put("longitude", global_longitude);
+        params.put("latitude", global_lattitude);
+        params.put("img_uri", uri);
+        SharedPreferences sharedPreferences = getSharedPreferences("selected_city", Context.MODE_PRIVATE);
+        final String city = sharedPreferences.getString("city", "null");
         final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         //for seller
 
-        firebaseFirestore.collection("users/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/"+category).add(params)
+        firebaseFirestore.collection("users/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/" + category).add(params)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             String id = task.getResult().getId();
-                            Map<String,Object> shopID = new HashMap<>();
-                            shopID.put("shop_id",id);
-                            shopID.put("user_id",FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            firebaseFirestore.collection("cities/" + city +"/"+category).add(shopID)
+                            Map<String, Object> shopID = new HashMap<>();
+                            shopID.put("shop_id", id);
+                            shopID.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            firebaseFirestore.collection("cities/" + city + "/" + category).add(shopID)
                                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                         @Override
                                         public void onComplete(@NonNull Task<DocumentReference> task) {
-                                            if (task.isSuccessful()){
+                                            if (task.isSuccessful()) {
                                                 Toast.makeText(AddEntity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
                                                 AddEntity.super.onBackPressed();
-                                            }else{
+                                            } else {
                                                 Toast.makeText(AddEntity.this, "Error : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
 
-                        }else{
+                        } else {
                             Toast.makeText(AddEntity.this, "ERROR : " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
 
 
     }
@@ -227,8 +228,6 @@ public class AddEntity extends AppCompatActivity implements View.OnClickListener
     }
 
 
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -254,8 +253,20 @@ public class AddEntity extends AppCompatActivity implements View.OnClickListener
 
         @Override
         public void onLocationChanged(Location loc) {
-            final Double longitude = loc.getLongitude();
-            final Double latitude = loc.getLatitude();
+//            final Double longitude = loc.getLongitude();
+//            final Double latitude = loc.getLatitude();
+
+            LocationManager locationManager = (LocationManager)
+                    getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            Location location = locationManager.getLastKnownLocation(locationManager
+                    .getBestProvider(criteria, false));
+            final double latitude = location.getLatitude();
+            final double longitude = location.getLongitude();
 
             /*------- To get city name from coordinates -------- */
             String cityName = null;

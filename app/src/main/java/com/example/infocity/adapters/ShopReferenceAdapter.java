@@ -1,6 +1,7 @@
 package com.example.infocity.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.infocity.EntityDetails;
 import com.example.infocity.R;
 import com.example.infocity.models.ShopReferenceModel;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,7 +43,7 @@ public class ShopReferenceAdapter extends RecyclerView.Adapter<ShopReferenceAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         String seller_id = rList.get(position).getUser_id();
         String shop_id = rList.get(position).getShop_id();
@@ -52,12 +55,30 @@ public class ShopReferenceAdapter extends RecyclerView.Adapter<ShopReferenceAdap
         firebaseFirestore.collection(collection_address).document(shop_id).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    public void onSuccess(final DocumentSnapshot documentSnapshot) {
                         holder.setIv_image(documentSnapshot.getString("img_uri"));
                         holder.setDescription(documentSnapshot.getString("other"));
                         holder.setShop_name(documentSnapshot.getString("name"));
+
+                        holder.card.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, EntityDetails.class);
+                                intent.putExtra("address",documentSnapshot.getString("address"));
+                                intent.putExtra("latitude",documentSnapshot.getDouble("latitude"));
+                                intent.putExtra("longitude",documentSnapshot.getDouble("longitude"));
+                                intent.putExtra("name",documentSnapshot.getString("name"));
+                                intent.putExtra("other",documentSnapshot.getString("other"));
+                                intent.putExtra("phone",documentSnapshot.getString("phone"));
+                                intent.putExtra("img_uri",documentSnapshot.getString("img_uri"));
+                                context.startActivity(intent);
+                            }
+                        });
+
                     }
                 });
+
+
 
 
     }
@@ -72,6 +93,7 @@ public class ShopReferenceAdapter extends RecyclerView.Adapter<ShopReferenceAdap
         ImageView iv_image;
         ImageButton ibt_call,ibt_message;
         TextView shop_name,description;
+        CardView card;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +103,7 @@ public class ShopReferenceAdapter extends RecyclerView.Adapter<ShopReferenceAdap
             ibt_message = itemView.findViewById(R.id.ibt_text_single_entity);
             shop_name = itemView.findViewById(R.id.et_title_single_entity);
             description = itemView.findViewById(R.id.tv_info_single_entity);
+            card = itemView.findViewById(R.id.card_single_entity);
 
 
         }
