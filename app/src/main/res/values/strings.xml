@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">infoCity</string>
+    <string name="admin_password">admin@123</string>
     <string name="title_activity_maps">Map</string>
 </resources>

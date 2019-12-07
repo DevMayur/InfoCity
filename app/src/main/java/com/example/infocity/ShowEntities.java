@@ -10,14 +10,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.infocity.adapters.ShopReferenceAdapter;
 import com.example.infocity.models.ShopReferenceModel;
+import com.example.infocity.shop_owner.AddEntity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -36,10 +35,12 @@ public class ShowEntities extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_entities);
 
+        SharedPreferences sharedPreferences1 = getSharedPreferences("role_selector",MODE_PRIVATE);
+
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
 
-        final Intent intent1 = new Intent(ShowEntities.this,AddEntity.class);
+        final Intent intent1 = new Intent(ShowEntities.this, AddEntity.class);
         intent1.putExtra("category",category);
 
         ibt_add_entity = findViewById(R.id.ibt_add_entity);
@@ -50,13 +51,20 @@ public class ShowEntities extends AppCompatActivity {
         shopReferenceAdapter = new ShopReferenceAdapter(this,rList);
         recyclerView.setAdapter(shopReferenceAdapter);
 
-
         ibt_add_entity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intent1);
             }
         });
+
+        String role = sharedPreferences1.getString("role","");
+
+        if (role.equals("shop_owner")){
+            ibt_add_entity.setVisibility(View.VISIBLE);
+        }else{
+            ibt_add_entity.setVisibility(View.GONE);
+        }
 
         retrive();
 

@@ -4,102 +4,134 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".AddEntity">
-    <ImageView
-        android:id="@+id/iv_placeholder_add_entity"
-        android:layout_width="fill_parent"
-        android:layout_height="150.0dip"
-        android:layout_marginTop="16.0dip"
-        android:src="@drawable/placeholder"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".shop_owner.AddEntity">
 
-    <ImageButton
-        android:id="@+id/ibt_add"
-        android:background="@drawable/bt_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12.0dip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_placeholder_add_entity" />
-
-
-    <EditText
-        android:id="@+id/et_name_add_entity"
-        android:layout_width="0.0dip"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24.0dip"
-        android:hint="name" android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_marginStart="24.0dip"
-        android:layout_marginEnd="24.0dip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ibt_add" />
-
-    <EditText
-        android:id="@+id/et_address_add_entity"
-        android:layout_width="0.0dip"
-        android:layout_height="wrap_content"
-        android:hint="address" android:ems="10"
-        android:inputType="textPostalAddress"
-        android:layout_marginStart="24.0dip"
-        android:layout_marginEnd="24.0dip"
-        app:layout_constraintBottom_toBottomOf="@id/iv_get_location_add_entity"
-        app:layout_constraintEnd_toStartOf="@id/iv_get_location_add_entity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/iv_get_location_add_entity" />
-
-    <ImageView
-        android:id="@+id/iv_get_location_add_entity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24.0dip"
-        android:layout_marginEnd="24.0dip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_name_add_entity"
-        app:srcCompat="@mipmap/ic_location" />
-
-
-    <EditText
-        android:gravity="start|center|top"
-        android:id="@+id/et_other_info_add_entity"
-        android:layout_width="0.0dip"
-        android:layout_height="0.0dip"
-        android:layout_marginTop="24.0dip"
-        android:hint="other information"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:layout_marginStart="24.0dip"
-        android:layout_marginEnd="24.0dip"
-        app:layout_constraintBottom_toTopOf="@id/et_phone_add_entity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_get_location_add_entity" />
-
-    <ImageButton
-        android:id="@+id/ibt_confirm_add_entity"
-        android:background="@drawable/bt_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16.0dip"
-        android:layout_marginEnd="28.0dip"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/et_phone_add_entity"
-        android:layout_width="0.0dip"
-        android:layout_height="wrap_content"
-        android:hint="phone number"
-        android:ems="10"
-        android:inputType="phone"
-        android:layout_marginStart="24.0dip"
-        android:layout_marginEnd="24.0dip"
-        app:layout_constraintBottom_toTopOf="@id/ibt_confirm_add_entity"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/et_name_add_entity"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ibt_add_edit_entity" />
+
+            <EditText
+                android:id="@+id/et_other_info_add_entity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:gravity="start|center|top"
+                android:hint="other information"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_address_add_entity" />
+
+            <ImageView
+                android:id="@+id/iv_get_location_add_entity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_name_add_entity"
+                app:srcCompat="@mipmap/ic_location" />
+
+            <ImageView
+                android:id="@+id/iv_placeholder_add_entity"
+                android:layout_width="fill_parent"
+                android:layout_height="150.0dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ibt_add_edit_entity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bt_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_placeholder_add_entity" />
+
+            <ImageButton
+                android:id="@+id/ibt_confirm_add_entity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bt_confirm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_gst_edit_entity" />
+
+            <EditText
+                android:id="@+id/et_phone_add_entity"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="phone number"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_other_info_add_entity" />
+
+            <EditText
+                android:id="@+id/et_address_add_entity"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:hint="address"
+                android:inputType="textPostalAddress"
+                app:layout_constraintEnd_toStartOf="@+id/iv_get_location_add_entity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_name_add_entity" />
+
+            <EditText
+                android:id="@+id/et_gst_edit_entity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:hint="GST number (FOR VERIFICATION)"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_phone_add_entity" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

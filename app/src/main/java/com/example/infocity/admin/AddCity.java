@@ -1,4 +1,4 @@
-package com.example.infocity;
+package com.example.infocity.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +14,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.infocity.R;
+import com.example.infocity.SelectCity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -38,7 +37,7 @@ public class AddCity extends AppCompatActivity {
     private EditText et_city_name;
     private Uri imgUri,resultUri;
     private StorageReference storageReference;
-    ProgressDialog progress;
+    private ProgressDialog progress;
 
     public static String imageUrl = null;
 
@@ -101,6 +100,7 @@ public class AddCity extends AppCompatActivity {
                     progress.dismiss();
                 } else {
                     Toast.makeText(AddCity.this, "upload failed: " + task.getException(), Toast.LENGTH_SHORT).show();
+                    progress.dismiss();
                 }
             }
         });
@@ -118,7 +118,7 @@ public class AddCity extends AppCompatActivity {
                     //SUCCESS
 
                     Toast.makeText(AddCity.this, "City Succesfully Added", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddCity.this,SelectCity.class);
+                    Intent intent = new Intent(AddCity.this, SelectCity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
 

@@ -33,7 +33,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
         tv_name = findViewById(R.id.tv_name_maps_activity);
         bt_navigate = findViewById(R.id.bt_navigate_maps);
 
