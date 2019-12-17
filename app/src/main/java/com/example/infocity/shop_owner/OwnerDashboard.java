@@ -27,6 +27,7 @@ import java.util.Objects;
 public class OwnerDashboard extends AppCompatActivity {
     private List<SingleEntityModel> eList;
     private SingleEntityAdapter singleEntityAdapter;
+    private List<String> cList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +35,11 @@ public class OwnerDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_owner_dashboard);
 
         eList = new ArrayList<>();
+        cList = new ArrayList<>();
         RecyclerView recyclerView = findViewById(R.id.recycler_view_activity_owner);
         Button bt_add_shop = findViewById(R.id.bt_add_shop_owner_dashbord);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        singleEntityAdapter = new SingleEntityAdapter(this,eList);
+        singleEntityAdapter = new SingleEntityAdapter(this,eList,cList);
         recyclerView.setAdapter(singleEntityAdapter);
 
         bt_add_shop.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +48,6 @@ public class OwnerDashboard extends AppCompatActivity {
                 startActivity(new Intent(OwnerDashboard.this, SelectCity.class));
             }
         });
-
 
         List<String> categories = new ArrayList<>();
         categories.add("hospital");
@@ -64,7 +65,7 @@ public class OwnerDashboard extends AppCompatActivity {
     }
 
     private void fetchData(List<String> categories){
-        for (String category : categories){
+        for (final String category : categories){
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             firebaseFirestore.collection("users/" + Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid() + "/" + category)
                     .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -74,7 +75,7 @@ public class OwnerDashboard extends AppCompatActivity {
                         for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()){
                             SingleEntityModel model = doc.getDocument().toObject(SingleEntityModel.class);
                             eList.add(model);
-                           Log.d("status_verification" , doc.getDocument().getBoolean("isVerified") + " " );
+                            cList.add(category);
                             singleEntityAdapter.notifyDataSetChanged();
                         }
                     }else{
@@ -84,4 +85,5 @@ public class OwnerDashboard extends AppCompatActivity {
             });
         }
     }
+
 }

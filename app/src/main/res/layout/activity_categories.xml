@@ -13,61 +13,61 @@
 
         <ImageView
             android:id="@+id/hospital"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/hospitals" />
 
         <ImageView android:id="@+id/hotel"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/hotel" />
 
         <ImageView android:id="@+id/shop"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/shops" />
 
         <ImageView android:id="@+id/medical"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/medicals" />
 
         <ImageView android:id="@+id/atm"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/atm" />
 
         <ImageView android:id="@+id/store"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/stores" />
 
         <ImageView android:id="@+id/petrol_pump"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/petrol_pumps" />
 
         <ImageView android:id="@+id/police_station"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/police_station" />
 
         <ImageView android:id="@+id/school"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/school" />
 
         <ImageView android:id="@+id/bus_stand"
-            android:padding="24.0dip"
+            android:padding="12.0dip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/bus_stand" />

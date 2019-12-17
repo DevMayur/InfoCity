@@ -1,6 +1,7 @@
 package com.example.infocity.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infocity.R;
 import com.example.infocity.models.SingleEntityModel;
+import com.example.infocity.shop_owner.ManageShopActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,10 +27,12 @@ public class SingleEntityAdapter extends RecyclerView.Adapter<SingleEntityAdapte
 
     private Context context;
     private List<SingleEntityModel> eList;
+    private List<String> cList;
 
-    public SingleEntityAdapter(Context context, List<SingleEntityModel> eList) {
+    public SingleEntityAdapter(Context context, List<SingleEntityModel> eList, List<String> cList) {
         this.context = context;
         this.eList = eList;
+        this.cList = cList;
     }
 
     @NonNull
@@ -39,7 +43,7 @@ public class SingleEntityAdapter extends RecyclerView.Adapter<SingleEntityAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
 
         holder.setDescription(eList.get(position).getOther());
@@ -50,7 +54,9 @@ public class SingleEntityAdapter extends RecyclerView.Adapter<SingleEntityAdapte
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, ManageShopActivity.class);
+                intent.putExtra("category",cList.get(position));
+                context.startActivity(intent);
             }
         });
 

@@ -51,7 +51,7 @@ public class ShopReferenceAdapter extends RecyclerView.Adapter<ShopReferenceAdap
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(final DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.getBoolean("isVerified")) {
+                        if (documentSnapshot.getString("isVerified").equals("true")) {
                             holder.setIv_image(documentSnapshot.getString("img_uri"));
                             holder.setDescription(documentSnapshot.getString("other"));
                             holder.setShop_name(documentSnapshot.getString("name"));

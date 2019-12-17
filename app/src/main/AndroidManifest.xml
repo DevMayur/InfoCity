@@ -18,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".shop_owner.EditEntity"></activity>
+        <activity android:name=".shop_owner.AddOfferActivity"></activity>
+        <activity android:name=".shop_owner.ManageShopActivity" />
+        <activity android:name=".shop_owner.EditEntity" />
         <activity android:name=".shop_owner.OwnerDashboard" />
         <activity android:name=".RoleSelector" />
         <activity android:name=".admin.FeedbackActivity" />
